@@ -1,0 +1,42 @@
+ultralytics==8.2.19
+opencv-python==4.9.0.80
+numpy==1.24.4
+
+pip install ultralytics opencv-python-headless numpy
+pip install ultralytics opencv-python numpy
+
+
+You can create this manually or use this command in terminal:
+
+bash
+Copy
+Edit
+echo "ultralytics==8.2.19\nopencv-python==4.9.0.80\nnumpy==1.24.4" > requirements.txt
+✅ 2. Install Requirements (with Python 3.13)
+Make sure Python 3.13 is installed and accessible via python or python3.13. Then run:
+
+bash
+Copy
+Edit
+python3.13 -m pip install -r requirements.txt
+Or if you're on Windows and using python points to 3.13:
+
+bash
+Copy
+Edit
+python -m pip install -r requirements.txt
+💡 Optional: Create Virtual Environment (Recommended)
+To keep things clean:
+
+bash
+Copy
+Edit
+python3.13 -m venv yolo-env
+source yolo-env/bin/activate   # On Windows: yolo-env\Scripts\activate
+pip install -r requirements.txt
+⚠️ Note:
+As of now, Python 3.13 is still in alpha/beta (not stable), and some packages may not officially support it yet. If you face compatibility issues:
+
+Use Python 3.10 or 3.11 (widely supported).
+
+Or wait until final stable release of Python 3.13 and packages catch up.

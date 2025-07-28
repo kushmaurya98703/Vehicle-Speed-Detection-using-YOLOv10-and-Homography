@@ -68,9 +68,9 @@ src_points = np.float32(points if len(points) == 4 else [
 # Real-world coordinates in meters (adjust based on actual measurements)
 dst_points = np.float32([
     [0, 0],
-    [500, 0], #bottom
-    [0, 100], #top
-    [500, 100]
+    [15, 0], #bottom
+    [0, 26], #top
+    [15, 26]
 ])
 
 # Calculate homography matrix
@@ -82,7 +82,7 @@ vehicle_tracker = {}
 next_vehicle_id = 0
 
 # Number of frames for moving average
-SPEED_HISTORY_SIZE = 20  # Increased for smoother averaging
+SPEED_HISTORY_SIZE = 30  # Increased for smoother averaging
 
 # Minimum time difference to avoid division by near-zero
 MIN_TIME_DIFF = 0.01  # Seconds

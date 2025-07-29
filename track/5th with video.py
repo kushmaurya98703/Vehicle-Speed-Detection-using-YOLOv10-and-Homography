@@ -74,17 +74,8 @@ def main():
     if device == 'cuda':
         model.to(device)
 
-    camera_indices = get_working_cameras()
-    if not camera_indices:
-        print("No working cameras found.")
-        return
+    cap = cv2.VideoCapture('video-1.mp4')
 
-    cam_idx = 0
-    cap = cv2.VideoCapture(camera_indices[cam_idx])
-    cap.set(cv2.CAP_PROP_FRAME_WIDTH, FRAME_WIDTH)
-    cap.set(cv2.CAP_PROP_FRAME_HEIGHT, FRAME_HEIGHT)
-    cap.set(cv2.CAP_PROP_FPS, FRAME_RATE)
-    print(f"Using camera index {camera_indices[cam_idx]}")
 
     print("Press 'p' to pause and select 4 homography points...")
     while True:
@@ -107,7 +98,11 @@ def main():
     cv2.destroyWindow('Select 4 Points')
 
     src_pts = np.float32(points)
-    dst_pts = np.float32([[0,0], [13,0], [0,35], [13,35]])
+    dst_pts = np.float32(
+        [[0,0],
+         [13,0],
+         [0,35],
+         [13,35]])
     H, _ = cv2.findHomography(src_pts, dst_pts)
 
     height, width = frame_copy.shape[:2]
@@ -120,7 +115,7 @@ def main():
     fourcc = cv2.VideoWriter_fourcc(*codec)
     out = cv2.VideoWriter(OUTPUT_PATH, fourcc, FRAME_RATE, (width, height))
     if not out.isOpened():
-        print(f"❌ VideoWriter failed to open using codec '{codec}'.")
+        print(f" VideoWriter failed to open using codec '{codec}'.")
         return
 
     print("Press 's' to start detection...")

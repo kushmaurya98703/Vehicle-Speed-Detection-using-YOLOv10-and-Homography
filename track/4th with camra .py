@@ -33,7 +33,7 @@ def open_camera(index, backend=cv2.CAP_DSHOW):
     return cap
 
 # Try opening camera at different indices
-camera_indices = [0, 1, 2]
+camera_indices = [0, 1, 2,3,4,5,6,7]
 cap = None
 for index in camera_indices:
     cap = open_camera(index)
@@ -106,9 +106,9 @@ src_points = np.float32(points if len(points) == 4 else [
 # Real-world coordinates in meters (adjust based on actual measurements)
 dst_points = np.float32([
     [0, 0],
-    [15, 0],  # bottom
-    [0, 26],  # top
-    [15, 26]
+    [13, 0],  # bottom
+    [0, 35],  # top
+    [13, 35]
 ])
 
 # Calculate homography matrix
@@ -173,7 +173,7 @@ try:
         scale_y = frame_height / 416
 
         # Perform YOLO inference on resized frame
-        results = model(yolo_frame, conf=0.25, iou=0.45)  # Adjust thresholds for performance
+        results = model(yolo_frame, conf=0.45, iou=0.45)  # Adjust thresholds for performance
 
         current_detections = {}
 
